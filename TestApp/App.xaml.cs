@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Windows;
+using TestApp.Models;
 using TestApp.Services.Abstractions;
 using TestApp.Services.Implementations;
 using TestApp.ViewModels;
@@ -16,14 +19,13 @@ namespace TestApp
             base.OnStartup(e);
 
             IDataProvider dataProvider = new DataProvider();
-            var orders = await dataProvider.GetOrdersAsync();
+            Task<IEnumerable<Order>> task = dataProvider.GetOrdersAsync();
 
-            MainWindow window = new MainWindow()
-            { 
-                DataContext = new MainWindowViewModel(orders)
-            };
-
+            MainWindow window = new MainWindow();
             window.Show();
+
+            var orders = await task;
+            window.DataContext = new MainWindowViewModel(orders);
         }
     }
 }
