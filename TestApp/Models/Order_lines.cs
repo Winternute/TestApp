@@ -12,20 +12,15 @@ namespace TestApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Order_lines
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
-        public Nullable<bool> gender { get; set; }
-        public Nullable<System.DateTime> date_of_birth { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public int product_id { get; set; }
+        public int order_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }
