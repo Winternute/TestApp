@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace TestApp.ViewModels
 {
-    internal class ViewModelBase
+    public class ViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
