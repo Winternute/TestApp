@@ -90,9 +90,35 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_lines.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Abstractions\IDataProvider.cs" />
+    <Compile Include="Services\Implementations\DataProvider.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -118,6 +144,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\TestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\TestModel.edmx.diagram">
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -127,9 +160,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
@@ -146,12 +177,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Databases\CreateTables InsertValues.sql" />
     <Content Include="Databases\TestDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Databases\TestDB_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>TestDB.mdf</DependentUpon>
+    </Content>
+    <Content Include="Models\TestModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TestModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
